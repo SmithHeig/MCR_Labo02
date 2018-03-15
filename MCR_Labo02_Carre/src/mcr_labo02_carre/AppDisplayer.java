@@ -6,6 +6,7 @@
 package mcr_labo02_carre;
 
 import java.awt.Graphics2D;
+import java.util.LinkedList;
 import javax.swing.JFrame;
 
 
@@ -14,6 +15,7 @@ public class AppDisplayer extends JFrame implements Displayer{
     
     private AppDisplayer(){
         super();
+        this.setSize(300,300);
     }
     
     public static AppDisplayer getInstance(){
@@ -25,22 +27,22 @@ public class AppDisplayer extends JFrame implements Displayer{
     
     @Override
     public int getWidth() {
-        return this.getWidth();
+        return super.getWidth();
     }
 
     @Override
     public int getHeight() {
-        return this.getHeight();
+        return super.getHeight();
     }
 
     @Override
     public Graphics2D getGraphics() {
-        return this.getGraphics();
+        return (Graphics2D)super.getGraphics();
     }
 
     @Override
     public void repaint() {
-        this.repaint();
+        super.repaint();
     }
 
     @Override

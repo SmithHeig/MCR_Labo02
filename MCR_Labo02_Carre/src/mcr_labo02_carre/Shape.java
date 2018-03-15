@@ -4,16 +4,19 @@
 
 package mcr_labo02_carre;
 
+import java.awt.*;
+import javax.swing.*;
 
-public abstract class Shapes {
+
+public abstract class Shape extends JPanel{
     //position courante
-    private int posX;
-    private int posY;
+    protected int posX;
+    protected int posY;
     //Vecteur de direction 
     private int directionX;
     private int directionY;
     
-    public Shapes(int posX, int posY, int directionX, int directionY){
+    public Shape(int posX, int posY, int directionX, int directionY){
         this.posX = posX;
         this.posY = posY;
         this.directionX = directionX;
@@ -33,4 +36,11 @@ public abstract class Shapes {
     public int getY(){
         return posY;
     }
+    
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+   }
+    
+    
 }

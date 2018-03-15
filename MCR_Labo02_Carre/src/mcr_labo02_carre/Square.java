@@ -5,16 +5,24 @@
  */
 package mcr_labo02_carre;
 
+import java.awt.*;
+
 /**
  *
  * @author james
  */
-public class Square extends Shapes{
-    private int size;
+public class Square extends Shape{
+    private final int size;
     
     public Square(int size,int posX, int posY, int directionX, int directionY) {
         super(posX, posY, directionX, directionY);
         this.size = size;
+    }
+    
+    @Override
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        g.fillRect(posX, posY, size, size);
     }
       
 }
