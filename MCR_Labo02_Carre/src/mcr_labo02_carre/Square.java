@@ -6,23 +6,24 @@
 package mcr_labo02_carre;
 
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 
 /**
- *
  * @author james
  */
+
 public class Square extends Shape{
-    private final int size;
+    private final double size; // a reflechir
     
-    public Square(int size,int posX, int posY, int directionX, int directionY) {
-        super(posX, posY, directionX, directionY);
+    public Square(double size,double posX, double posY, double directionX, double directionY) {
+        super(posX, posY, directionX, directionY, Color.BLUE);
         this.size = size;
+        shape = new Rectangle2D.Double(posX, posY,size,size);
     }
     
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        g.fillRect(posX, posY, size, size);
     }
       
 }

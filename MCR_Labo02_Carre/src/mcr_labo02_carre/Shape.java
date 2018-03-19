@@ -5,18 +5,24 @@
 package mcr_labo02_carre;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
+import java.awt.geom.RectangularShape;
 import javax.swing.*;
 
 
-public abstract class Shape extends JPanel{
+public abstract class Shape extends JComponent{
     //position courante
-    protected int posX;
-    protected int posY;
+    protected double posX;
+    protected double posY;
     //Vecteur de direction 
-    private int directionX;
-    private int directionY;
+    private double directionX;
+    private double directionY;
     
-    public Shape(int posX, int posY, int directionX, int directionY){
+    private Color color;
+    
+    protected RectangularShape shape;
+    
+    public Shape(double posX, double posY, double directionX, double directionY, Color color){
         this.posX = posX;
         this.posY = posY;
         this.directionX = directionX;
@@ -27,19 +33,29 @@ public abstract class Shape extends JPanel{
         // à ajouter: colision contre les mures
         posX += directionX;
         posY += directionY;
+        // géré avec la taille de la forme
+        if(posX < 0 || posX > AppDisplayer.getInstance().getWidth()){
+            directionX = -directionX;
+        }
+        if(posY < 0 || posY > AppDisplayer.getInstance().getHeight()){
+            directionY = -directionY;
+        }
     }
     
-    public int getX(){
+    public double getPosX(){
         return posX;
     }
     
-    public int getY(){
+    public double getPosY(){
         return posY;
     }
     
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setColor(color);
+        g2d.draw(shape);
    }
     
     
