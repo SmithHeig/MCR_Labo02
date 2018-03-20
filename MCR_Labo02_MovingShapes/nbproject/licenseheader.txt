@@ -1,0 +1,8 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}
+${licensePrefix}@autor Jeremie Chatillon et James Smith
+<#if licenseLast??>
+${licenseLast}
+</#if>

@@ -1,8 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @file AppDisplayer.java
+ * @author Jeremie Chatillon et James Smith
+ * @date 20.03.18
  */
+
 package mcr_labo02_movingshapes;
 
 import Displayer.*;
@@ -12,34 +13,39 @@ import java.util.LinkedList;
 import javax.swing.Timer;
 
 /**
- *
- * @author james
+ * Main class
  */
 public class MCR_Labo02_MovingShapes {
+    /** CONSTANTE **/
     private final int NB_CIRCLE = 10;
     private final int NB_SQUARE = 10;
     private final int MAX_SIZE = 20;
     
+    /** ATTRIBUT **/
     private Displayer display;
     private LinkedList<Shape> shapes;
     
+    /**
+     * Constructeur
+     */
     public MCR_Labo02_MovingShapes(){
         display = AppDisplayer.getInstance();
         shapes = new LinkedList();
         
         for(int i = 0; i < NB_CIRCLE; ++i){
-            double posX = Math.random() * display.getWidth();
-            double posY = Math.random() * display.getHeight();
+            double posX = Math.random() * (display.getWidth()- MAX_SIZE);
+            double posY = Math.random() * (display.getHeight()- MAX_SIZE);
             double radius = Math.random() * MAX_SIZE;
             shapes.add(new Circle(posX, posY, radius));
         }
         for(int j = 0; j < NB_SQUARE; ++j){
-            double posX = Math.random() * display.getWidth();
-            double posY = Math.random() * display.getHeight();
+            double posX = Math.random() * (display.getWidth() - MAX_SIZE);
+            double posY = Math.random() * (display.getHeight()- MAX_SIZE);
             double size = Math.random() * MAX_SIZE;
             shapes.add(new Square(posX, posY, size));
         }
     }
+    
     /**
      * @param args the command line arguments
      */
@@ -48,20 +54,21 @@ public class MCR_Labo02_MovingShapes {
         app.run();
     }
     
+    /**
+     * Fonction qui fait bouger les éléments
+     */
     public void run(){
-        while(true){
+        ActionListener actionLinstener = e -> {
             for(Shape s : shapes) {
-                s.move(display);
-                System.out.println(s.getPosX() + " " + s.getPosY());
+                s.move(display.getWidth(), display.getHeight());
                 s.paint(display.getGraphics());
             }
             display.repaint();
-            try{
-            Thread.sleep(50);
-            }catch(Exception e){
-                System.err.println(e.getMessage());
-            }
-        }
+        };
+
+        Timer t = new Timer(50, actionLinstener);
+        t.start();
+
     }
     
 }

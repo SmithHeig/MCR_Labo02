@@ -1,8 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @file Circle.java
+ * @author Jeremie Chatillon et James Smith
+ * @date 20.03.18
  */
+
 package Shape;
 
 import java.awt.Color;
@@ -10,11 +11,16 @@ import java.awt.geom.*;
 import java.util.Random;
 
 /**
- *
- * @author james
+ * @class Circle - Represente un Cercle
  */
 public class Circle extends Shape{
     
+    /**
+     * Constructeur avec paramètres
+     * @param posX Position horizontal du cercle
+     * @param posY Position vertical du cercle
+     * @param radius Rayon du cercle
+     */
     public Circle(double posX, double posY, double radius) {
         super(posX, posY, radius, radius, Color.BLUE, new Ellipse2D.Double(posX, posY, radius, radius));
     }    
