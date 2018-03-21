@@ -19,8 +19,12 @@ public class Square extends Shape{
      * @param posY position vertical de la forme
      * @param size taille d'un coté du carré
      */
-    public Square(double posX, double posY, double size){
-        super(posX, posY, size, size, Color.RED, new Rectangle2D.Double(posX, posY, size, size));
+    public Square(double posX, double posY, double size, Velocity velocity){
+        super(posX, posY, size, size, Color.RED, velocity, new Rectangle2D.Double(posX, posY, size, size));
+    }
+    
+    public Square(double width, double height){
+        this(Math.random() * (width - MAX_SIZE), Math.random() * (height - MAX_SIZE), Math.random() * MAX_SIZE, new Velocity());
     }
     
 }

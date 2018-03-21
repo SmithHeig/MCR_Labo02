@@ -17,6 +17,8 @@ import javax.swing.*;
  * Herite de JComponent
  */
 public abstract class Shape extends JComponent{
+    /** CONSTANTE **/
+    protected static final double MAX_SIZE = 20;
     /** ATTRIBUTS **/
     private double posX;
     private double posY;
@@ -39,7 +41,7 @@ public abstract class Shape extends JComponent{
      * @param color
      * @param shape 
      */
-    public Shape(double posX,double posY, double width, double height,Color color, RectangularShape shape){
+    public Shape(double posX,double posY, double width, double height,Color color, Velocity velocity, RectangularShape shape){
         this.posX = posX;
         this.posY = posY;
         this.width = width;
@@ -47,7 +49,7 @@ public abstract class Shape extends JComponent{
         this.color = color;
         this.shape = shape;
          
-        velocity = new Velocity(); // Génération d'un vecteur de déplacement aléatoire
+        this.velocity = velocity; // Génération d'un vecteur de déplacement aléatoire
     }
     
     /**
@@ -68,11 +70,21 @@ public abstract class Shape extends JComponent{
         posX += velocity.x;
         posY += velocity.y;
         
-        if(posX < 0 || posX > dispWidth - this.width){
+        if(posX < 0){
             velocity.x = -velocity.x;
+            posX = 0;
         }
-        if(posY < 0 || posY > dispHeight - this.height){
+        if(posX > dispWidth - this.width){
+            velocity.x = -velocity.x;
+            posX = dispWidth - this.width;
+        }
+        if(posY < 0){
             velocity.y = -velocity.y;
+            posY = 0;
+        }
+        if(posY > dispHeight - this.height){
+            velocity.y = -velocity.y;
+            posY = dispHeight - this.height;
         }
         shape.setFrame(posX, posY, width, height);
     }
